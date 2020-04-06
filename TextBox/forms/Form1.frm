@@ -114,7 +114,7 @@ ToolTip=
 ToolTipBalloon=False
 LeftMargin=0
 RightMargin=0
-AcceptFiles=False
+AcceptFiles=True
 
 [Label]
 Name=Label1
@@ -392,6 +392,27 @@ End Sub
 Sub Form1_Command10_BN_Clicked(hWndForm As hWnd, hWndControl As hWnd)  '单击
     Text1.PasswordChar = "*"
 End Sub
+
+Function Form1_Text2_Custom(hWndForm As hWnd, hWndControl As hWnd, wMsg As UInteger, wParam As wParam, lParam As lParam) As LResult  '自定义消息（全部消息），在其它事件处理后才轮到本事件。
+    Select Case wMsg 
+    Case WM_DROPFILES
+        dim as HDROP hdrop = cast(HDROP,wParam)
+        Dim u As Long = DragQueryFile(hDrop, -1, Null, 0) '获取文件个数 
+        If u Then
+        Dim nFile As wString * (MAX_PATH + 1), re As Long, i As Long
+        For i = 0 To u -1
+            re = DragQueryFileW(hDrop, i, @nFile, MAX_PATH) '获取文件名，返回文件名的字符个数
+            If re Then
+                PrintA nFile  'nFile 包含路径的文件名，这里是宽字符版，要获取 A字符，使用 Dim nFile As zString 和 DragQueryFileA
+            End If
+        Next
+   End If   
+    Case else  
+    End Select 
+    Function = FALSE ' 若不想系统继续处理此消息，则应返回 TRUE （俗称吃掉消息）。
+End Function
+
+
 
 
 

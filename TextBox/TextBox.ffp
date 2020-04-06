@@ -25,7 +25,7 @@ Build=0
 FileMajor=1
 FileMinor=0
 FileRevision=0
-FileBuild=10
+FileBuild=12
 AutoIncrement=1
 DefaultCompiler=32
 Comments=
@@ -36,9 +36,9 @@ LegalTrademarks=
 ProductName=
 
 [Objects]
-Form=.\forms\Form1.frm|22|1268|Startup||
+Form=.\forms\Form1.frm|0|252|Startup||
 
-TopTab=.\forms\Form1.frm|True|1|0|252
+TopTab=.\forms\Form1.frm|True|0|0|252
 #END_MAIN_PROPERTIES#
 
 
